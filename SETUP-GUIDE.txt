@@ -1,0 +1,90 @@
+KENZIE’S STORY — NETLIFY + GOOGLE SHEETS RSVP
+==================================================
+This project contains the APPROVED animated invitation and Google Maps design.
+The RSVP form now connects to a private Google Sheet THROUGH a Netlify Function.
+Do not drag only the public/ folder into Netlify: that leaves out the Function.
+
+FILES
+  public/index.html         Existing animated invitation and working RSVP form
+  public/assets/...         Original animated invitation GIF
+  google-apps-script/Code.gs  Backend to paste in Google Apps Script
+  netlify/functions/rsvp.mjs  Serverless Google Sheets proxy
+  netlify.toml              Publish and functions configuration
+
+STEP 1 — GOOGLE SHEET
+1. Create a private Google Sheet: Kenzie's 5th Birthday — RSVP Database.
+2. Extensions > Apps Script. Replace Code.gs with google-apps-script/Code.gs.
+3. Save and run setupSheets from the Apps Script editor once (authorize).
+   If menu is visible after refreshing sheet, use Kenzie RSVP > Set up guest sheets.
+4. On Families tab: put the invited family names in column B, starting B2.
+   Leave column A blank (codes will be generated); do not add fake data to Guests.
+5. Run generateMissingCodes from Apps Script, OR reload the sheet and use
+   Kenzie RSVP > Generate codes for new families.
+   You get a unique unpredictable code for each family in column A.
+
+STEP 2 — SHARED SECRET
+1. Generate a long random secret (32+ random characters). For example,
+   use a password manager's secure random password generator.
+2. In Apps Script: Project Settings (gear) > Script properties > Add script property:
+   RSVP_SHARED_SECRET = YOUR_LONG_RANDOM_SECRET
+   Do not insert this secret into HTML or commit it to GitHub.
+
+STEP 3 — PUBLISH APPS SCRIPT WEB APP
+1. Deploy > New deployment > type: Web app.
+2. Execute as: Me. Who has access: Anyone (if available for your account).
+   The Sheet remains private; the Apps Script secret is verified in doPost.
+   If Anyone isn't available because of Workspace policy, this method won't work.
+3. Authorize and Deploy. Copy the final /exec URL (NOT /dev).
+4. If you edit Code.gs later: Deploy > Manage deployments > Edit > New version.
+
+STEP 4 — NETLIFY (USE GIT-BASED DEPLOY FOR FUNCTIONS)
+1. Upload this entire project folder to a PRIVATE GitHub repository (or deploy
+   via Netlify CLI). DO NOT upload the Apps Script shared secret.
+2. In Netlify: Add new project > Import existing project > GitHub > select repo.
+3. Site build settings: publish directory public; functions directory
+   netlify/functions; no build command required. netlify.toml contains these.
+4. In Netlify Project configuration > Environment variables, add:
+   GOOGLE_APPS_SCRIPT_URL = copied Apps Script /exec URL
+   RSVP_SHARED_SECRET = same random secret as Step 2
+   Ensure available to Functions scope. Save, then trigger a fresh deploy.
+5. Your site is ready on its .netlify.app address. Keep it unpublished to guests
+   until you've tested one family fully.
+
+STEP 5 — TEST BEFORE SHARING
+1. Add a test family in Families B2 (e.g. TEST FAMILY) and generate its code.
+2. Visit https://YOUR-SITE.netlify.app/?invite=THE_CODE_FROM_COLUMN_A
+3. Open RSVP; confirm it identifies TEST FAMILY. Enter contact and two guests,
+   one Adult and one Kid. Save.
+4. In Google Sheet check Families status and counts; Guests contains two rows.
+5. Open the same link again. Check existing response and edit it; confirm guests
+   are replaced, not duplicated. Test 'Declined'; prior guest rows should clear.
+6. Remove the test family and its guest rows before sending real invitations.
+
+SHARE A UNIQUE LINK WITH EACH FAMILY
+  https://YOUR-SITE.netlify.app/?invite=KZ-XXXXXXXX...(their code)
+  Do not share the sheet URL. Keep family links private; each is a bearer key
+  and lets anyone holding it view/change that family's RSVP.
+  Families tab: put full URL in column I using formula (change site URL):
+  =IF(A2="","","https://YOUR-SITE.netlify.app/?invite="&ENCODEURL(A2))
+  Fill down for more families. Row 1 I1 can say Invitation Link.
+
+PRIVACY / USAGE LIMITS
+- A family link is a secret. Anyone who receives/forwards it can edit that RSVP.
+- Only the family name and that family's RSVP are returned by a valid lookup.
+- No Google login is required for guests. Apps Script runs as you.
+- Never put RSVP_SHARED_SECRET in public HTML or your repo.
+- This is suitable for a small private party, not high-volume public traffic.
+- Basic server-side code checking prevents casual lookups of other families;
+  sophisticated abuse protection/rate limiting is NOT included. Consider
+  Netlify rate limiting if needed. Limit who you share links with.
+- Don't enter sensitive information beyond name, adult/kid category, RSVP.
+- If you edit Sheets headers, code may need updating.
+
+TROUBLESHOOT
+- 'Not configured': Netlify environment variables are missing or deployment
+  has not been refreshed.
+- 'Invitation code not found': check column A and that KZ- code matches exactly.
+- 'Could not reach guest list': check the Apps Script /exec URL, deployment,
+  sharing policy, and Netlify Function logs.
+- No function found: deploy the FULL project via Git or Netlify CLI, not just
+  the public directory with Netlify Drop.

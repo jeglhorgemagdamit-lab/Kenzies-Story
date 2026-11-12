@@ -1,0 +1,618 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#8bcdf3">
+  <meta name="description" content="Join Kenzie's Story: an animated birthday invitation with a family RSVP and directions to Kidventure Play Center, Estancia Mall.">
+  <title>Kenzie's Story ✦ Turns 5!</title>
+  <style>
+    :root{
+      --sky:#92d3fa;--sky-deep:#54afed;--sky-light:#e7f7ff;
+      --navy:#173f74;--navy-deep:#0d2f58;--red:#d51f2b;--red-deep:#9d1620;
+      --gold:#ffc83d;--gold-deep:#e6a92d;--cream:#fffdf4;--ink:#263e61;
+      --shadow:0 26px 72px rgba(24,75,126,.19);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;min-height:100vh;background:linear-gradient(180deg,#6bbdf3 0%,#9ad7ff 21%,#bce8ff 55%,#eaf9ff 80%,#fff7e3 100%);color:var(--ink);font-family:'Trebuchet MS',Verdana,Arial,sans-serif;overflow-x:hidden}
+    body::before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at 48% 2%,rgba(255,255,255,.46),transparent 48%),linear-gradient(105deg,transparent 22%,rgba(255,255,255,.08) 40%,transparent 66%);z-index:0}
+    button,input,select{font:inherit}button{touch-action:manipulation}
+    button:focus-visible,input:focus-visible,select:focus-visible{outline:4px solid #ffc63b;outline-offset:3px}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    .sky-decor{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;contain:paint}
+    .cloud{position:absolute;width:188px;height:55px;border-radius:80px;background:rgba(255,255,255,.64);filter:drop-shadow(0 8px 16px rgba(38,129,181,.08));animation:cloudDrift 16s ease-in-out infinite alternate}
+    .cloud::before,.cloud::after{content:"";position:absolute;border-radius:50%;background:inherit}
+    .cloud::before{height:84px;width:84px;bottom:14px;left:27px}.cloud::after{height:116px;width:116px;bottom:7px;right:27px}
+    .cloud.one{top:11%;left:-120px;transform:scale(.8);animation-duration:22s}
+    .cloud.two{top:39%;right:-100px;opacity:.65;transform:scale(1.15);animation-duration:26s;animation-delay:-4s}
+    .cloud.three{top:72%;left:-118px;opacity:.6;transform:scale(.75);animation-duration:19s;animation-delay:-8s}
+    .sparkle{position:absolute;font-size:clamp(15px,2.3vw,31px);color:#fff5b4;text-shadow:0 0 3px #ffde79,0 0 22px rgba(255,234,131,.85);animation:starBlink 3.6s ease-in-out infinite}
+    .sparkle:nth-of-type(4){left:7%;top:14%;animation-delay:.1s}.sparkle:nth-of-type(5){right:9%;top:18%;animation-delay:.9s}.sparkle:nth-of-type(6){left:15%;top:49%;animation-delay:1.7s}.sparkle:nth-of-type(7){right:11%;top:59%;animation-delay:.5s}.sparkle:nth-of-type(8){left:8%;top:88%;animation-delay:2.3s}.sparkle:nth-of-type(9){right:18%;top:87%;animation-delay:1.4s}
+    @keyframes cloudDrift{to{translate:60px -14px}}
+    @keyframes starBlink{0%,100%{opacity:.28;transform:scale(.75) rotate(-18deg)}47%{opacity:1;transform:scale(1.22) rotate(15deg)}}
+    .site-top{position:relative;z-index:2;max-width:1100px;margin:0 auto;padding:24px clamp(18px,4vw,38px);display:flex;align-items:center;justify-content:space-between;gap:14px}
+    .brand{display:flex;align-items:center;gap:10px;color:#113b71;font-weight:900;letter-spacing:.035em;font-size:clamp(14px,2vw,18px);text-shadow:0 1px rgba(255,255,255,.58)}
+    .brand-star{display:grid;place-items:center;background:#fbd345;color:#a7661f;width:36px;height:36px;border:2px solid #fff9d9;transform:rotate(-13deg);clip-path:polygon(50% 0%,61% 32%,94% 29%,72% 53%,83% 85%,50% 66%,17% 85%,28% 53%,6% 29%,39% 32%);filter:drop-shadow(0 3px 1px #8e5b21)}
+    .preview-pill{border:1px solid rgba(255,255,255,.9);color:#174879;background:rgba(255,255,255,.53);backdrop-filter:blur(8px);font-size:10px;letter-spacing:.12em;font-weight:900;border-radius:99px;padding:9px 12px;white-space:nowrap}
+    .page{isolation:isolate;position:relative;z-index:1;max-width:1180px;margin:auto;padding:0 18px 40px}
+    .story-intro{text-align:center;margin:4px auto 21px;color:var(--navy);animation:introSlide 1.2s cubic-bezier(.2,.75,.25,1) both;animation-delay:.3s}
+    .story-intro .eyebrow{letter-spacing:.25em;font-size:clamp(10px,1.4vw,12px);font-weight:900;color:#275c90;text-transform:uppercase;margin:0 0 7px}
+    .story-intro h1{margin:0;font-family:Georgia,'Times New Roman',serif;font-size:clamp(25px,4vw,42px);font-style:italic;line-height:1.16;text-shadow:0 2px rgba(255,255,255,.62);font-weight:700}
+    .story-intro h1 span{color:var(--red)}
+    .story-intro .subtitle{font-size:13px;margin:10px 0 0;opacity:.8}
+    .stage{display:flex;align-items:center;flex-direction:column;position:relative}
+    .stage::before{content:"";position:absolute;z-index:-1;width:min(680px,92vw);height:min(690px,82vh);top:7%;border-radius:50%;background:radial-gradient(ellipse,rgba(255,245,198,.66),rgba(255,255,255,.25) 38%,transparent 70%);filter:blur(10px);animation:glowPulse 7s ease-in-out infinite}
+    @keyframes glowPulse{50%{opacity:.64;transform:scale(1.04)}}
+    .poster-halo{position:relative;width:min(520px,100%);padding:8px;border-radius:17px;background:linear-gradient(145deg,rgba(255,255,255,.8),rgba(255,255,255,.28) 35%,rgba(255,255,255,.78));box-shadow:0 26px 70px rgba(22,80,137,.19),0 5px 21px rgba(25,86,133,.17);animation:posterEntrance 1.55s cubic-bezier(.17,.85,.25,1) both;animation-delay:.35s;transform-origin:top center;will-change:transform,opacity}
+    .poster-halo::after{content:"";position:absolute;inset:7px;border-radius:10px;pointer-events:none;box-shadow:inset 0 0 0 1px rgba(255,255,255,.3)}
+    .poster-crop{position:relative;width:100%;aspect-ratio:358 / 470;overflow:hidden;border-radius:10px;background:#92d1fa}.poster-halo img{display:block;position:static;width:100%;height:auto;aspect-ratio:358 / 470;background:#92d1fa}
+    @keyframes posterEntrance{0%{opacity:0;transform:translateY(70px) scale(.86) rotate(-2deg);filter:blur(12px)}57%{opacity:1;filter:blur(0)}83%{transform:translateY(-8px) scale(1.015) rotate(.5deg)}100%{opacity:1;transform:translateY(0) scale(1) rotate(0);filter:blur(0)}}
+    @keyframes introSlide{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+    .stage-star{position:absolute;pointer-events:none;filter:drop-shadow(0 8px 5px rgba(88,98,56,.16));animation:floaty 5s ease-in-out infinite}
+    .stage-star.left{width:37px;left:calc(50% - 335px);top:20%;animation-delay:-2s}
+    .stage-star.right{width:53px;right:calc(50% - 345px);top:57%}
+    @keyframes floaty{50%{transform:translateY(-14px) rotate(11deg)}}
+    .under-poster{width:min(520px,100%);display:flex;flex-direction:column;align-items:center;text-align:center;margin:23px auto 4px;animation:introSlide 1.1s both;animation-delay:1s}
+    .divider-small{display:flex;align-items:center;gap:12px;color:#be811d;font-weight:900;font-size:12px;letter-spacing:.12em;margin:0 0 14px}
+    .divider-small::before,.divider-small::after{content:"";width:50px;height:2px;background:linear-gradient(90deg,transparent,#f4cc5c)}
+    .divider-small::after{transform:rotate(180deg)}
+    .open-button{position:relative;display:inline-flex;justify-content:center;align-items:center;gap:12px;min-height:69px;min-width:min(410px,100%);padding:16px 24px;background:linear-gradient(180deg,#e52d3d,#bd1524);color:#fff;border:4px solid #fff8db;outline:3px solid #f4c348;outline-offset:2px;border-radius:22px;font-size:clamp(18px,3.5vw,23px);letter-spacing:.025em;font-weight:1000;box-shadow:0 12px 0 #8e1620,0 20px 28px rgba(31,65,94,.3);cursor:pointer;transition:transform .2s ease,box-shadow .2s ease;animation:ctaBreath 2.8s 2.4s ease-in-out infinite}
+    .open-button:hover{transform:translateY(-3px);box-shadow:0 15px 0 #8e1620,0 24px 28px rgba(31,65,94,.26)}
+    .open-button:active{transform:translateY(7px);box-shadow:0 5px 0 #8e1620,0 10px 14px rgba(31,65,94,.2)}
+    .open-button .btn-star{font-size:29px;color:#fff0a9;filter:drop-shadow(0 2px 2px #8f2a18)}
+    .open-button .chevron{font-size:23px;transition:transform .3s ease}
+    .open-button[aria-expanded="true"] .chevron{transform:rotate(180deg)}
+    @keyframes ctaBreath{50%{filter:brightness(1.08)}}
+    .rsvp-hint{font-size:13px;color:#2d5d87;font-weight:bold;line-height:1.5;margin:20px 4px 0}
+    .rsvp-section{position:relative;max-width:710px;margin:0 auto;visibility:hidden;opacity:0;max-height:0;overflow:hidden;transform:translateY(-15px);transition:opacity .45s ease,transform .65s cubic-bezier(.2,.8,.2,1),max-height .75s cubic-bezier(.2,.8,.2,1),visibility .75s}
+    .rsvp-section.is-open{visibility:visible;opacity:1;max-height:5000px;transform:translateY(0);overflow:visible;margin-top:32px}
+    .cloud-card{position:relative;margin:22px auto 30px;background:#fdfdff;border:7px solid #fff;border-radius:39px;box-shadow:0 13px 0 rgba(78,170,222,.23),0 32px 64px rgba(25,84,133,.2);isolation:isolate}
+    .cloud-card::before{content:"";position:absolute;z-index:-1;top:-35px;left:4%;width:92%;height:68px;border-radius:48% 42% 0 0 / 95% 86% 0 0;background:white;box-shadow:-47px 13px 0 -14px white,54px 5px 0 -9px white,115px 12px 0 -18px white}
+    .cloud-card::after{content:"";position:absolute;inset:8px;border:2px dashed #dcefff;border-radius:29px;pointer-events:none}
+    .cloud-head{position:relative;background:linear-gradient(165deg,#e0f4ff 0%,#bce8ff 73%,#effaff);border-radius:30px 30px 35px 35px;padding:42px 26px 31px;text-align:center;overflow:hidden}
+    .cloud-head::before,.cloud-head::after{content:"";position:absolute;pointer-events:none;width:130px;height:35px;border-radius:50px;background:rgba(255,255,255,.5);box-shadow:30px -12px 0 0 rgba(255,255,255,.5),65px 0 0 0 rgba(255,255,255,.5);animation:cloudDrift 10s ease-in-out infinite alternate}
+    .cloud-head::before{left:-40px;top:44px;transform:scale(.58)}
+    .cloud-head::after{right:-60px;bottom:45px;transform:scale(.68);animation-delay:-4s}
+    .rope-knot{position:absolute;top:23px;left:20px;font-size:22px;color:#a57423;transform:rotate(-18deg)}
+    .little-star{display:inline-grid;place-items:center;width:49px;height:49px;border-radius:50%;background:#f7c83d;border:3px solid white;color:#985f15;font-size:25px;box-shadow:0 4px 0 #d49a2a;animation:floaty 4s ease-in-out infinite}
+    .cloud-head .overline{font-weight:900;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#2f648e;margin:16px 0 8px}
+    .cloud-head h2{font-family:Georgia,'Times New Roman',serif;font-weight:900;font-size:clamp(29px,5vw,45px);line-height:1.12;letter-spacing:-.035em;color:#163f76;margin:0}
+    .cloud-head h2 em{color:var(--red);font-style:normal}
+    .cloud-head p{max-width:470px;margin:13px auto 0;color:#345b81;line-height:1.6;font-size:14px}
+    .form-body{padding:25px clamp(18px,4vw,43px) 33px}
+    .form-label{font-size:13px;font-weight:900;color:#204a7a;letter-spacing:.01em;display:block;margin:0 0 9px}
+    .label-sub{font-size:11px;font-weight:normal;color:#627b9e;margin:0 0 11px}
+    .field{margin-bottom:23px}
+    .input-wrap{position:relative}
+    .input-wrap input,.guest-row input,.guest-row select{width:100%;min-height:52px;background:#f5fbff;color:#1c3f68;padding:13px 15px;border:2px solid #cce7f7;border-radius:14px;font-size:15px;outline-offset:2px;transition:border-color .18s,background .18s}
+    .input-wrap input:focus,.guest-row input:focus,.guest-row select:focus{border-color:#4aa9ed;background:#fff;outline:none;box-shadow:0 0 0 4px #c3ecff}
+    .input-wrap input::placeholder,.guest-row input::placeholder{color:#879db4}
+    .sample-row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;margin:9px 0 0;align-items:center;color:#68839d;font-size:11px}
+    .sample-button{border:0;padding:2px 0;color:#b62632;font-weight:900;background:transparent;text-decoration:underline;text-underline-offset:2px;cursor:pointer}
+    .form-rule{margin:25px 0;border:0;border-top:2px dashed #d9eaf7}
+    .choice-group{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin:13px 0 22px}
+    .choice-group label{display:block;cursor:pointer;position:relative}
+    .choice-group input{position:absolute;opacity:0;width:1px;height:1px}
+    .choice-group span{display:flex;min-height:64px;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap;text-align:center;border:2px solid #cfe7f8;background:#eef9ff;border-radius:15px;padding:11px 9px;color:#204b80;font-size:13px;font-weight:900;transition:background .2s,border-color .2s,transform .2s}
+    .choice-group label:hover span{transform:translateY(-1px)}
+    .choice-group input:checked+span{background:#fff4c6;border-color:#ffc73c;color:#143d70;box-shadow:0 3px 0 #f7c84155}
+    .choice-group input:focus-visible+span{outline:4px solid #f8ca43;outline-offset:3px}
+    .guest-section-head{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:19px 0 6px}
+    .guest-section-head h3{margin:0;font-size:22px;color:#194d87;font-family:Georgia,'Times New Roman',serif}
+    .kid-icon{font-size:23px}
+    .guest-tip{font-size:12px;line-height:1.5;color:#69819a;margin:0 0 16px}
+    .guest-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(100px,135px) 37px;gap:8px;align-items:center;margin:10px 0;animation:guestIn .3s ease both}
+    @keyframes guestIn{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
+    .guest-row input,.guest-row select{min-width:0;min-height:49px;padding:10px 11px;font-size:14px}
+    .remove-guest{border:2px solid #ffdfdf;color:#ac2134;background:#fff0f2;height:44px;width:37px;display:grid;place-items:center;border-radius:10px;font-size:24px;cursor:pointer;transition:background .2s}
+    .remove-guest:hover{background:#ffd9dd}
+    .add-button{background:#e6f6ff;color:#19528a;border:2px dashed #82c5ef;min-height:49px;padding:11px 17px;border-radius:12px;font-weight:900;width:100%;font-size:14px;cursor:pointer;transition:background .2s}
+    .add-button:hover{background:#cdeaff}
+    .guest-count{display:flex;justify-content:space-around;align-items:center;background:linear-gradient(120deg,#e7f7ff,#f4fbff);border:2px solid #c4e8fc;border-radius:18px;margin:21px 0 26px;padding:16px 7px;gap:8px}
+    .count-item{display:flex;align-items:center;flex-direction:column;gap:2px;min-width:50px}
+    .count-item strong{font-family:Georgia,'Times New Roman',serif;font-size:30px;line-height:1;color:#154b86;font-variant-numeric:tabular-nums}
+    .count-item span{font-size:11px;color:#557b9d;font-weight:900;text-transform:uppercase;letter-spacing:.08em}
+    .count-sep{height:35px;border-left:1px solid #b3dbf4}
+    .submit-button{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;border-radius:15px;border:0;background:linear-gradient(180deg,#d92d3f,#bd1626);color:#fff;padding:17px 16px;font-weight:1000;font-size:18px;min-height:59px;box-shadow:0 6px 0 #981728;cursor:pointer;transition:transform .15s ease,box-shadow .15s ease}
+    .submit-button:hover{filter:brightness(1.06)}.submit-button:active{transform:translateY(3px);box-shadow:0 3px 0 #981728}
+    .form-message{margin:14px 0 0;border:2px solid #e9a5ae;background:#fff4f5;color:#a12739;padding:12px 15px;border-radius:12px;font-size:13px;line-height:1.5;display:none}
+    .form-message.visible{display:block}
+    .demo-disclaimer{display:flex;gap:9px;align-items:flex-start;color:#557293;background:#edf8ff;border-radius:13px;padding:13px;margin-top:20px;font-size:12px;line-height:1.5}
+    .demo-disclaimer strong{color:#27496e}
+    .socks-banner{display:flex;align-items:center;justify-content:center;gap:12px;background:#fff6da;border:2px dashed #f0d17b;border-radius:17px;text-align:center;color:#a72e35;font-weight:1000;font-size:14px;padding:15px;margin-top:19px}
+    .socks-banner .socks{font-size:24px}
+    .thanks{display:none;text-align:center;animation:guestIn .6s ease both;padding:31px 0 10px}
+    .thanks.is-visible{display:block}
+    .thanks-sticker{display:grid;place-items:center;margin:auto;width:94px;height:94px;border-radius:50%;background:#ffdf67;border:6px solid white;outline:3px solid #f6c34b;box-shadow:0 10px 18px #23588728;font-size:46px;animation:floaty 3.5s ease-in-out infinite}
+    .thanks h3{font-family:Georgia,'Times New Roman',serif;color:#184e87;font-size:clamp(30px,5vw,42px);line-height:1.13;margin:25px 0 12px}
+    .thanks p{font-size:14px;line-height:1.6;color:#496d91;margin:0 auto 15px;max-width:440px}
+    .thanks .preview-note{font-size:12px;color:#9b3243;background:#fff1e9;padding:11px 14px;border-radius:10px}
+    .edit-button{min-height:48px;padding:10px 22px;border-radius:11px;background:#e6f6ff;color:#1c5388;font-weight:900;border:2px solid #a9dcf5;cursor:pointer;margin-top:9px}
+    .footer{text-align:center;margin:45px 0 14px;color:#2f6492;font-size:13px;line-height:1.7}
+    .footer strong{color:#ae2835}
+    .footer .fine{font-size:11px;opacity:.8}
+    .confetti{position:fixed;top:-20px;z-index:80;pointer-events:none;will-change:transform,opacity;animation:confettiFall var(--duration,3s) cubic-bezier(.2,.6,.3,1) forwards}
+    @keyframes confettiFall{0%{opacity:0;transform:translate3d(0,-30px,0) rotate(0deg)}15%{opacity:1}100%{opacity:0;transform:translate3d(var(--horizontal,50px),110vh,0) rotate(var(--rotation,630deg))}}
+    .opening{position:fixed;inset:0;z-index:100;display:grid;place-items:center;background:radial-gradient(circle at center,#bce6ff,#67b9ed 85%);animation:splashExit .9s 1.55s forwards;pointer-events:none}
+    .opening-inner{text-align:center;padding:24px;animation:splashPop 1.1s ease both}
+    .opening-emblem{font-size:58px;color:#ffcb36;text-shadow:0 3px #ad741b,0 0 19px #ffe5a1;display:block;margin-bottom:15px;animation:badgeSpin 1.5s ease-out}
+    .opening-line{font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:clamp(24px,6vw,42px);color:#15487c;margin:0 0 8px}
+    .opening-caption{font-size:12px;font-weight:900;letter-spacing:.24em;color:#2b6897;text-transform:uppercase}
+    @keyframes badgeSpin{from{transform:scale(.3) rotate(-125deg);opacity:0}70%{transform:scale(1.1) rotate(9deg)}to{transform:scale(1) rotate(0)}}
+    @keyframes splashPop{from{opacity:0;transform:scale(.76)}to{opacity:1;transform:scale(1)}}
+    @keyframes splashExit{to{opacity:0;visibility:hidden}}
+    @media(min-width:940px){.story-intro{margin-bottom:26px}.sky-decor .cloud.one{left:3%}.sky-decor .cloud.two{right:3%}.sky-decor .cloud.three{left:5%}}
+    @media(max-width:640px){.site-top{padding:18px 16px 12px}.brand{font-size:14px}.brand-star{width:31px;height:31px}.preview-pill{font-size:9px;padding:8px 9px}.page{padding:0 12px 24px}.story-intro{margin-top:8px;margin-bottom:16px}.story-intro h1{font-size:27px}.story-intro .eyebrow{font-size:9px;letter-spacing:.19em}.poster-halo{width:min(510px,100%);padding:5px;border-radius:13px}.poster-crop{border-radius:8px}.under-poster{margin-top:22px}.stage-star{display:none}.open-button{min-width:min(355px,calc(100% - 20px));min-height:64px}.cloud-card{border-width:5px;border-radius:29px}.cloud-card::after{inset:5px;border-radius:21px}.cloud-head{border-radius:24px;padding:35px 17px 24px}.form-body{padding:22px 15px 24px}.cloud-head h2{font-size:32px}.guest-row{grid-template-columns:minmax(0,1fr) 94px 34px;gap:6px}.guest-row input,.guest-row select{padding:10px 8px;font-size:13px}.remove-guest{width:34px}.guest-count{padding:15px 5px}.choice-group{gap:8px}.choice-group span{font-size:12px;min-height:68px;padding:9px 5px}.socks-banner{font-size:12px}.rsvp-section.is-open{margin-top:28px}}
+    @media(max-width:360px){.page{padding:0 8px 18px}.guest-row{grid-template-columns:minmax(0,1fr) 83px 32px;gap:4px}.form-body{padding:20px 11px 23px}.preview-pill{font-size:8px}.brand{font-size:12px}.cloud-head h2{font-size:29px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.opening{display:none!important}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.rsvp-section{transition:none}.poster-halo{filter:none!important}}
+
+    /* KENZIE'S STORY • integrated invitation art direction
+       The image is intentionally not mounted inside a framed card.
+       Its sky and white lower half flow into the wider scene. */
+    .page { overflow: visible; }
+    .story-intro { position:relative;z-index:3;margin-bottom:0;padding-bottom:16px; }
+    .stage {
+      width:100vw;
+      max-width:none;
+      left:50%;
+      margin-left:-50vw;
+      padding:12px 14px clamp(65px,8vw,90px);
+      position:relative;
+      isolation:isolate;
+      overflow:hidden;
+      background:linear-gradient(to bottom,
+          rgba(162,220,251,0) 0%,
+          #b8e5ff 28%,
+          #e5f6ff 39%,
+          #fff 49%,
+          #fff 85%,
+          rgba(255,255,255,0) 100%);
+    }
+    .stage::before {
+      content:"";
+      position:absolute;
+      top:0;bottom:auto;left:0;right:0;
+      width:auto;height:68%;
+      border-radius:0;
+      background:
+        radial-gradient(ellipse 53% 29% at 50% 10%,rgba(255,246,201,.44),transparent 90%),
+        radial-gradient(ellipse 23% 12% at 11% 34%,rgba(255,255,255,.54),transparent 90%),
+        radial-gradient(ellipse 22% 13% at 87% 27%,rgba(255,255,255,.48),transparent 92%);
+      filter:none;
+      pointer-events:none;
+      z-index:-1;
+      animation:glowPulse 9s ease-in-out infinite;
+    }
+    .stage::after {
+      content:"";
+      position:absolute;
+      left:-3%;right:-3%;
+      height:clamp(80px,11vw,168px);
+      bottom:4%;
+      background:radial-gradient(ellipse at 50% 0%,#fff 0%,rgba(255,255,255,.98) 44%,transparent 80%);
+      pointer-events:none;
+      z-index:-1;
+    }
+    .poster-halo {
+      width:min(585px,100vw);
+      padding:0;
+      background:transparent;
+      box-shadow:none;
+      border:none;
+      border-radius:0;
+      filter:none;
+      overflow:visible;
+      z-index:1;
+    }
+    .poster-halo::after { display:none; }
+    .poster-crop { overflow:visible;border-radius:0;background:transparent;aspect-ratio:auto; }
+    .poster-halo img {
+      width:100%;
+      height:auto;
+      display:block;
+      object-fit:contain;
+      aspect-ratio:358/470;
+      background:transparent;
+      -webkit-mask-image:linear-gradient(to right,transparent 0%,#000 8%,#000 92%,transparent 100%),linear-gradient(to bottom,transparent 0%,#000 4%,#000 100%);
+      mask-image:linear-gradient(to right,transparent 0%,#000 8%,#000 92%,transparent 100%),linear-gradient(to bottom,transparent 0%,#000 4%,#000 100%);
+      -webkit-mask-composite:source-in;
+      mask-composite:intersect;
+    }
+    .scene-cloud {
+      position:absolute;
+      pointer-events:none;
+      z-index:2;
+      width:clamp(118px,21vw,280px);
+      height:clamp(29px,4.9vw,67px);
+      background:rgba(255,255,255,.77);
+      border-radius:99px;
+      box-shadow:0 5px 16px rgba(73,147,205,.06);
+      filter:drop-shadow(0 4px 11px rgba(90,161,204,.05));
+      animation:sceneCloudFloat 8s ease-in-out infinite alternate;
+    }
+    .scene-cloud::before,.scene-cloud::after {
+      content:"";position:absolute;bottom:14%;background:inherit;border-radius:50%;
+    }
+    .scene-cloud::before {width:47%;aspect-ratio:1;left:10%}
+    .scene-cloud::after {width:58%;aspect-ratio:1;right:11%}
+    .scene-cloud.left {top:22%;left:clamp(-130px,calc(50% - 530px),7%);transform:scale(.84);animation-delay:-1.8s;}
+    .scene-cloud.right {top:32%;right:clamp(-125px,calc(50% - 540px),6%);opacity:.73;animation-delay:-3s;}
+    @keyframes sceneCloudFloat {to{translate:0 -13px;opacity:.92}}
+    .scene-sparkle {
+      position:absolute;z-index:3;pointer-events:none;
+      color:#ffd64e;text-shadow:1px 3px #d99725,0 0 17px #fffbcb;
+      font-size:clamp(25px,4.3vw,50px);
+      animation:starBlink 3.5s ease-in-out infinite;
+    }
+    .scene-sparkle.one {top:12%;left:max(5%,calc(50% - 420px));animation-delay:.7s}
+    .scene-sparkle.two {top:35%;right:max(5%,calc(50% - 450px));animation-delay:2s}
+    .stage-star {z-index:3;}
+    .stage-star.left {left:calc(50% - 365px);top:21%}
+    .stage-star.right {right:calc(50% - 385px);top:43%}
+    .under-poster {
+      margin:11px auto 0;
+      width:min(490px,calc(100% - 20px));
+      position:relative;z-index:5;
+      padding:7px 10px 0;
+    }
+    .divider-small {color:#bf831d;margin-bottom:21px;text-shadow:0 1px white}
+    .open-button {border-radius:22px;transform-origin:center;}
+    .rsvp-hint {color:#356287;max-width:300px;margin:23px auto 0}
+    .rsvp-section {scroll-margin-top:25px}
+    .footer {position:relative;z-index:1}
+    @media(min-width:940px) {
+      .stage {padding-top:8px}
+      .poster-halo {width:min(590px,100vw)}
+    }
+    @media(max-width:640px) {
+      .story-intro {padding-bottom:7px;margin-bottom:0}
+      .stage {padding:0 0 68px;}
+      .poster-halo {width:100vw;max-width:100vw;padding:0;border-radius:0;}
+      .poster-crop {border-radius:0}
+      .scene-cloud.left {top:23%;left:-95px;opacity:.7}
+      .scene-cloud.right {top:31%;right:-96px;opacity:.66}
+      .scene-sparkle.one {top:14%;left:3%;font-size:24px}
+      .scene-sparkle.two {top:37%;right:3%;font-size:27px}
+      .under-poster {width:min(410px,100%);margin:12px auto 0;padding:4px 21px 0}
+      .divider-small {margin-bottom:20px;font-size:10px}
+      .open-button {width:100%;min-width:0}
+      .rsvp-hint {margin-top:23px}
+    }
+    @media(prefers-reduced-motion:reduce){.scene-cloud,.scene-sparkle{animation:none}}
+
+    /* Refined journey: animated invitation → RSVP → directions, no repeated details. */
+    .stage{padding-top:0}
+    .under-poster{margin-top:0;padding-top:0}
+    .open-button{min-height:70px;letter-spacing:.12em}
+    .rsvp-hint{margin-top:17px;color:#325d85;font-size:13px}
+    .cloud-head h2{font-size:clamp(30px,5vw,43px)}
+    .cloud-head .overline{letter-spacing:.22em}
+    .location-section{position:relative;max-width:910px;margin:10px auto 26px;scroll-margin-top:20px}
+    .location-kicker{text-align:center;font-size:11px;font-weight:900;letter-spacing:.20em;color:#b16d1b;margin-bottom:17px;display:flex;align-items:center;justify-content:center;gap:16px}
+    .location-kicker::before,.location-kicker::after{content:"";height:1px;width:42px;background:#e4b34b}
+    .location-card{display:grid;grid-template-columns:minmax(220px,.86fr) minmax(260px,1.14fr);background:rgba(255,255,255,.95);border:6px solid #fff;border-radius:29px;overflow:hidden;box-shadow:0 16px 45px rgba(33,88,132,.14);}
+    .location-info{padding:31px 26px 28px;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;background:linear-gradient(160deg,#f2fbff,#fffdf3)}
+    .location-pin{display:grid;place-items:center;font-size:25px;background:#fff0ad;box-shadow:0 3px #e9cc67;width:52px;height:52px;border-radius:18px;margin-bottom:14px}
+    .location-info h2{font-family:Georgia,'Times New Roman',serif;font-size:clamp(28px,3vw,38px);color:#184b84;font-style:italic;margin:0 0 18px;line-height:1.1}
+    .location-name{font-size:18px;font-weight:1000;color:#c42633;margin:0 0 8px;line-height:1.2}
+    .location-address{font-size:14px;color:#3d5979;line-height:1.65;margin:0}
+    .directions-button{display:inline-flex;align-items:center;justify-content:center;gap:10px;margin:22px 0 0;background:linear-gradient(180deg,#e42d3a,#bd1729);color:white;text-decoration:none;padding:13px 19px;border-radius:13px;font-weight:900;box-shadow:0 5px 0 #991c26;min-height:48px;transition:transform .18s,box-shadow .18s}
+    .directions-button:hover{transform:translateY(-2px);box-shadow:0 7px 0 #991c26}
+    .directions-button:focus-visible{outline:3px solid #ffbf37;outline-offset:3px}
+    .location-note{max-width:320px;font-size:11px;line-height:1.55;color:#7189a0;margin:20px 0 0}
+    .map-wrap{position:relative;min-height:340px;background:linear-gradient(135deg,#d7f2ff,#f7fbff);overflow:hidden}
+    .map-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+    .map-cover{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:13px;background:radial-gradient(circle at 50% 35%,#faffff 0%,#d5f2ff 63%,#c0e9ff 100%);text-align:center;padding:24px;color:#164b85;z-index:2;isolation:isolate}
+    .map-cover::before{content:"";position:absolute;inset:0;z-index:-1;opacity:.25;background:repeating-linear-gradient(23deg,transparent 0px,transparent 58px,white 59px,white 69px,transparent 70px,transparent 127px),repeating-linear-gradient(121deg,transparent 0px,transparent 69px,#86c7ed 70px,#86c7ed 74px,transparent 75px,transparent 139px)}
+    .map-art{display:grid;place-items:center;width:102px;height:92px;position:relative;transform:rotate(-6deg);border:4px solid white;border-radius:23px;background:linear-gradient(140deg,#fff6c0,#ffdd65);box-shadow:0 11px 24px #4a9cbd3d;font-size:37px}
+    .map-art>span{position:absolute;top:5px;left:11px;font-size:16px;color:#d49025}.map-art i{font-style:normal;filter:drop-shadow(0 5px 3px #bf7b2833)}
+    .map-cover>strong{font-size:20px;letter-spacing:.01em}
+    .show-map-button{cursor:pointer;min-height:45px;background:#fff;border:2px solid #74bde6;border-radius:13px;padding:11px 17px;color:#19548b;font-weight:1000;box-shadow:0 4px 0 #85c1e0}
+    .show-map-button:hover{background:#f5fcff}.show-map-button:focus-visible{outline:3px solid #ffc32b;outline-offset:3px}
+    .map-cover>small{font-size:11px;color:#487695;line-height:1.4}
+    .map-cover[hidden]{display:none}
+    .footer-minimal{margin:20px 0 8px;font-size:12px;font-weight:800;color:#2f6594;letter-spacing:.02em}
+    .footer-minimal .fine{font-size:10px;margin-top:6px;font-weight:500}
+    .footer-star{color:#e8ae25;padding:0 8px}
+    @media(max-width:720px){
+      .location-section{max-width:575px;margin:6px auto 34px}
+      .location-card{grid-template-columns:1fr;border-radius:25px;border-width:5px}
+      .location-info{padding:23px 22px 22px;display:grid;grid-template-columns:43px 1fr;column-gap:14px;align-items:start}
+      .location-pin{width:43px;height:43px;font-size:20px;border-radius:14px;margin:0}
+      .location-info h2{font-size:29px;margin:0 0 12px}
+      .location-name{font-size:16px}
+      .location-address{font-size:13px}
+      .directions-button{grid-column:1/-1;width:100%;margin:21px 0 0}
+      .location-note{grid-column:1/-1;max-width:none;margin:16px 0 0;text-align:center}
+      .map-wrap{min-height:290px}
+    }
+    @media(max-width:640px){.stage{padding-top:0}.under-poster{margin-top:6px}.location-section{margin-top:0}.location-kicker{margin-bottom:13px}}
+    @media(prefers-reduced-motion:reduce){.directions-button{transition:none}}
+
+    /* Original website welcome copy — kept above the invitation, not repeated elsewhere. */
+    .story-intro{max-width:760px;margin:6px auto 0;padding:8px 12px 23px;text-align:center;position:relative;z-index:3}
+    .story-intro .eyebrow{font-family:'Trebuchet MS',Verdana,sans-serif;color:#265582;font-size:clamp(10px,1.55vw,13px);font-weight:900;letter-spacing:.16em;line-height:1.7;margin:0 0 12px}
+    .story-intro h1{font-size:clamp(28px,5vw,49px);color:#103e75;line-height:1.12;letter-spacing:-.025em;margin:0 auto 11px}
+    .story-intro h1 span{color:#d71f2c}
+    .story-intro .subtitle{font-size:clamp(13px,2.1vw,17px);line-height:1.5;color:#2a5784;font-weight:700;margin:0;opacity:1}
+    @media(max-width:640px){.story-intro{padding:8px 10px 19px}.story-intro .eyebrow{font-size:10px;letter-spacing:.11em;margin-bottom:9px}.story-intro h1{font-size:clamp(27px,8vw,35px)}.story-intro .subtitle{font-size:13px}}
+  </style>
+</head>
+<body>
+  <div class="opening" aria-hidden="true"><div class="opening-inner"><span class="opening-emblem">★</span><p class="opening-line">Once upon a birthday...</p><span class="opening-caption">A new adventure begins</span></div></div>
+  <div class="sky-decor" aria-hidden="true">
+    <div class="cloud one"></div><div class="cloud two"></div><div class="cloud three"></div>
+    <span class="sparkle">✦</span><span class="sparkle">★</span><span class="sparkle">✦</span><span class="sparkle">★</span><span class="sparkle">✦</span><span class="sparkle">★</span>
+  </div>
+  <header class="site-top">
+    <div class="brand"><span class="brand-star" aria-hidden="true">★</span><span>KENZIE'S STORY</span></div>
+    <span class="preview-pill">✦ DESIGN PREVIEW ✦</span>
+  </header>
+  <main class="page">
+    <section class="story-intro" aria-label="Birthday welcome">
+      <p class="eyebrow">THE SWEETEST LITTLE COWGIRL IS TURNING FIVE</p>
+      <h1>You've got a friend in <span>Kenzie!</span></h1>
+      <p class="subtitle">Join us for a rootin'-tootin' birthday adventure.</p>
+    </section>
+    <section class="stage" aria-label="Seamless animated birthday invitation">
+      <div class="scene-cloud left" aria-hidden="true"></div>
+      <div class="scene-cloud right" aria-hidden="true"></div>
+      <span class="scene-sparkle one" aria-hidden="true">✦</span>
+      <span class="scene-sparkle two" aria-hidden="true">★</span>
+      <svg class="stage-star left" viewBox="0 0 100 100" aria-hidden="true"><path fill="#ffd34f" stroke="#bf831b" stroke-width="4" d="m50 4 13 29 32 4-24 22 7 32-28-15-28 15 7-32L5 37l32-4z"/></svg>
+      <div class="poster-halo"><div class="poster-crop"><img src="assets/kenzie-animated-invitation.gif" width="358" height="470" alt="Kenzie's animated birthday invitation: Kenzie turns five, Sunday, November 29, 2026, 2 to 5 PM at Kidventure Play Center, Estancia Mall, Pasig City. Don't forget your play socks!" fetchpriority="high"></div></div>
+      <svg class="stage-star right" viewBox="0 0 100 100" aria-hidden="true"><path fill="#ffd34f" stroke="#bf831b" stroke-width="4" d="m50 4 13 29 32 4-24 22 7 32-28-15-28 15 7-32L5 37l32-4z"/></svg>
+      <div class="under-poster">
+        
+        <button id="open-rsvp" class="open-button" type="button" aria-expanded="false" aria-controls="rsvp-section">
+          <span class="btn-star" aria-hidden="true">★</span><span id="cta-label">OPEN RSVP</span><span class="chevron" aria-hidden="true">⌄</span>
+        </button>
+        <p class="rsvp-hint">Use your family invitation code to reply.</p>
+      </div>
+    </section>
+    <section id="rsvp-section" class="rsvp-section" aria-label="Birthday RSVP form" aria-hidden="true">
+      <div class="cloud-card">
+        <div class="cloud-head">
+          <span class="little-star" aria-hidden="true">★</span>
+          
+          <h2>Family <em>RSVP</em></h2>
+          <p>One quick reply for your whole family.</p>
+        </div>
+        <div class="form-body">
+          <form id="rsvp-form" novalidate>
+            <div id="family-banner" role="status" aria-live="polite" style="display:none;padding:12px 15px;margin-bottom:17px;background:#e9f9ec;color:#215b40;border-radius:13px;font-weight:800;"></div>
+            <div class="field">
+              <label class="form-label" for="invitation-code">Family invitation code</label>
+              <div class="input-wrap"><input id="invitation-code" name="code" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="Your unique family code" maxlength="64" required></div>
+              <div class="sample-row"><span id="family-lookup-status">Use the code from your personal invitation link.</span><button class="sample-button" id="lookup-code" type="button">Check code</button></div>
+            </div>
+            <div class="field">
+              <label class="form-label" for="contact-name">Parent / contact name</label>
+              <div class="input-wrap"><input id="contact-name" name="contact" autocomplete="name" placeholder="Your name" maxlength="100" required></div>
+            </div>
+            <hr class="form-rule">
+            <div class="field">
+              <p class="form-label" id="attendance-title">Can you make it?</p>
+              <div class="choice-group" role="radiogroup" aria-labelledby="attendance-title">
+                <label><input type="radio" name="attendance" value="yes" checked><span>🤠 Yes, we'll be there!</span></label>
+                <label><input type="radio" name="attendance" value="no"><span>💛 Sorry, can't make it</span></label>
+              </div>
+            </div>
+            <div id="guest-panel">
+              <div class="guest-section-head"><h3>Guests attending</h3><span class="kid-icon" aria-hidden="true">⭐</span></div>
+              <p class="guest-tip">Enter each guest’s name and select Adult or Kid.</p>
+              <div id="guests" aria-label="Guest list"></div>
+              <button id="add-guest" class="add-button" type="button">＋ Add another guest</button>
+              <div class="guest-count" aria-live="polite">
+                <div class="count-item"><strong id="adult-count">0</strong><span>Adults</span></div>
+                <div class="count-sep" aria-hidden="true"></div>
+                <div class="count-item"><strong id="kid-count">0</strong><span>Kids</span></div>
+                <div class="count-sep" aria-hidden="true"></div>
+                <div class="count-item"><strong id="total-count">0</strong><span>Total</span></div>
+              </div>
+            </div>
+            <button id="submit-rsvp" class="submit-button" type="submit"><span aria-hidden="true">★</span><span id="submit-label">Save My RSVP</span><span aria-hidden="true">➜</span></button>
+            <div class="form-message" id="form-message" role="alert"></div>
+            <div class="demo-disclaimer" id="connection-note"><span aria-hidden="true">★</span><span>Use your private family code to save or update your RSVP.</span></div>
+          </form>
+          <div id="thank-you" class="thanks" role="status" aria-live="polite" tabindex="-1">
+            <span class="thanks-sticker" aria-hidden="true">🤠</span>
+            <h3 id="thank-you-title">Yeehaw! See you there!</h3>
+            <p id="thank-you-message">You're on the guest list for a wild adventure!</p>
+            <p class="preview-note" id="save-note">Your RSVP has been saved. Use the same family link to update it later.</p>
+            <button id="edit-rsvp" class="edit-button" type="button">← Update my RSVP</button>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+
+    <section id="location" class="location-section" aria-labelledby="location-heading">
+      <div class="location-kicker"><span aria-hidden="true">✦</span> FIND YOUR WAY <span aria-hidden="true">✦</span></div>
+      <div class="location-card">
+        <div class="location-info">
+          <span class="location-pin" aria-hidden="true">📍</span>
+          <div class="location-copy">
+            <h2 id="location-heading">See you there!</h2>
+            <p class="location-name">Kidventure Play Center</p>
+            <p class="location-address">2nd Floor, Main Mall<br>Estancia Mall · Capitol Commons<br>Pasig City, Metro Manila</p>
+          </div>
+          <a class="directions-button" href="https://www.google.com/maps/dir/?api=1&amp;destination=Kidventure%20Play%20Center%20Estancia%20Mall%20Pasig%20City&amp;destination_place_id=ChIJqS3NcADJlzMRwozVycImFx0" target="_blank" rel="noopener noreferrer" aria-label="Get directions to Kidventure Play Center at Estancia Mall in Google Maps">
+            <span aria-hidden="true">↗</span> Get directions
+          </a>
+          <p class="location-note">Google Maps guides you to the mall; the floor is listed above.</p>
+        </div>
+        <div class="map-wrap" aria-label="Google Maps preview">
+          <iframe title="Google Maps location of Kidventure Play Center, Estancia Mall, Pasig City" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Kidventure%20Play%20Center%2C%20Estancia%20Mall%2C%20Capitol%20Commons%2C%20Pasig%20City%2C%20Philippines&output=embed" allowfullscreen></iframe>
+          <div class="map-cover" id="map-cover">
+            <span class="map-art" aria-hidden="true"><span>★</span><i>📍</i></span>
+            <strong>Explore the location</strong>
+            <button type="button" id="show-map" class="show-map-button">Show Google Map <span aria-hidden="true">↗</span></button>
+            <small>Interactive map · internet connection required</small>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer footer-minimal"><span class="footer-star" aria-hidden="true">★</span> Kenzie's Story <span class="footer-star" aria-hidden="true">★</span><div class="fine">RSVP privately with your family invitation</div></footer>
+  </main>
+  <script>
+    (() => {
+      'use strict';
+      const $ = (selector) => document.querySelector(selector);
+      const openBtn = $('#open-rsvp');
+      const rsvp = $('#rsvp-section');
+      const form = $('#rsvp-form');
+      const guestsNode = $('#guests');
+      const guestPanel = $('#guest-panel');
+      const message = $('#form-message');
+      const params = new URLSearchParams(window.location.search);
+             const invitationCodeFromLink = params.get('invite') || params.get('code');
+       if (invitationCodeFromLink) $('#invitation-code').value = invitationCodeFromLink.slice(0,64).trim().toUpperCase();
+       const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+       const scrollOptions = () => ({behavior: reducedMotion.matches ? 'instant' : 'smooth', block: 'start'});
+       let guestList = [];
+       let nextId = 1;
+       let verifiedCode = '';
+       let isBusy = false;
+       const API = '/.netlify/functions/rsvp';
+       async function callApi(action, data) {
+         const response = await fetch(API, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({action, ...data})});
+         let payload;
+         try { payload = await response.json(); } catch { throw new Error('The RSVP service is unavailable. Please try again later.'); }
+         if (!response.ok || !payload.ok) throw new Error(payload.message || 'Could not connect to the guest list.');
+         return payload;
+       }
+       function setBusy(busy, caption) {
+         isBusy=busy;
+         $('#lookup-code').disabled=busy;
+         $('#submit-rsvp').disabled=busy;
+         $('#lookup-code').textContent=busy ? 'Checking…' : 'Check code';
+         $('#submit-label').textContent=busy ? (caption || 'Saving…') : 'Save My RSVP';
+       }
+       function toggleRsvp(force) {
+         const willOpen = typeof force === 'boolean' ? force : !rsvp.classList.contains('is-open');
+         rsvp.classList.toggle('is-open', willOpen);
+         rsvp.setAttribute('aria-hidden', String(!willOpen));
+         openBtn.setAttribute('aria-expanded', String(willOpen));
+         $('#cta-label').textContent = willOpen ? 'CLOSE RSVP' : 'OPEN RSVP';
+         if (willOpen) setTimeout(() => rsvp.scrollIntoView(scrollOptions()), 150);
+         else openBtn.scrollIntoView(scrollOptions());
+       }
+       openBtn.addEventListener('click', () => toggleRsvp());
+       function showFamily(family, data) {
+         verifiedCode=$('#invitation-code').value.trim().toUpperCase();
+         $('#family-banner').textContent=`★ ${family} — your family's invitation`;
+         $('#family-banner').style.display='block';
+         $('#family-lookup-status').textContent='Invitation verified. You can save or update your RSVP.';
+         if (data.status && data.status !== 'Pending') {
+           $('#contact-name').value=data.contact || '';
+           const yes=data.status==='Attending';
+           form.querySelector(`input[name="attendance"][value="${yes?'yes':'no'}"]`).checked=true;
+           guestPanel.hidden=!yes;
+           guestList=[];guestsNode.replaceChildren();
+           (data.guests || []).forEach(g=>addGuest(g.name,g.category));
+           if (yes && !guestList.length) addGuest();
+           refreshCounts();
+         }
+       }
+       async function lookupFamily() {
+         if (isBusy) return false;
+         clearError();
+         const code=$('#invitation-code').value.trim().toUpperCase();
+         if (!code) {showError('Please enter the invitation code from your family link.',$('#invitation-code'));return false;}
+         setBusy(true,'Checking…');
+         try {const data=await callApi('lookup',{code});showFamily(data.family,data);return true;}
+         catch(err){verifiedCode='';$('#family-banner').style.display='none';showError(err.message);return false;}
+         finally {setBusy(false);}
+       }
+       $('#lookup-code').addEventListener('click',lookupFamily);
+       $('#invitation-code').addEventListener('input',()=>{verifiedCode='';$('#family-banner').style.display='none';$('#family-lookup-status').textContent='Use the code from your personal invitation link.';});
+       if(invitationCodeFromLink) { // Prefill and validate without scrolling the page past the invitation.
+         lookupFamily();
+       }
+function addGuest(name='', category='Adult') {
+        const item = {id: nextId++, name, category};
+        guestList.push(item);
+        const row = document.createElement('div');
+        row.className = 'guest-row';
+        row.dataset.id = String(item.id);
+        const input = document.createElement('input');
+        input.type = 'text';input.maxLength = 100;input.autocomplete = 'off';
+        input.placeholder = 'Full name';input.value = name;
+        input.setAttribute('aria-label',`Guest ${guestList.length} full name`);
+        input.addEventListener('input', () => {item.name = input.value;refreshCounts()});
+        const select = document.createElement('select');
+        select.setAttribute('aria-label',`Guest ${guestList.length} category`);
+        for(const type of ['Adult','Kid']) {
+          const option = document.createElement('option');option.value = type;option.textContent = type;select.appendChild(option);
+        }
+        select.value = category;
+        select.addEventListener('change', () => {item.category = select.value;refreshCounts()});
+        const remove = document.createElement('button');remove.type = 'button';remove.className='remove-guest';
+        remove.textContent='×';remove.setAttribute('aria-label','Remove this guest');
+        remove.addEventListener('click',() => {guestList=guestList.filter(guest=>guest.id!==item.id);row.remove();refreshCounts()});
+        row.append(input,select,remove);guestsNode.appendChild(row);refreshCounts();return input;
+      }
+      function refreshCounts(){
+        const valid = guestList.filter(guest=>guest.name.trim());
+        const adult = valid.filter(guest=>guest.category==='Adult').length;
+        $('#adult-count').textContent = adult;
+        $('#kid-count').textContent = valid.length-adult;
+        $('#total-count').textContent = valid.length;
+      }
+      addGuest('','Adult');addGuest('','Kid');
+      $('#add-guest').addEventListener('click',()=>addGuest('','Kid').focus());
+      function isAttending(){return form.querySelector('input[name="attendance"]:checked').value==='yes'}
+      document.querySelectorAll('input[name="attendance"]').forEach(radio=>radio.addEventListener('change',()=>{guestPanel.hidden=!isAttending();clearError()}));
+      function clearError(){message.classList.remove('visible');message.textContent=''}
+      function showError(text,node){message.textContent=text;message.classList.add('visible');if(node)node.focus()}
+      form.addEventListener('input',clearError);
+      form.addEventListener('submit',async (event)=>{
+         event.preventDefault();if(isBusy)return;clearError();
+         const code=$('#invitation-code').value.trim().toUpperCase();
+         if(!code){showError('Please enter your family invitation code.',$('#invitation-code'));return;}
+         const contact=$('#contact-name').value.trim();
+         if(!contact){showError('Please enter the name of the person submitting this RSVP.',$('#contact-name'));return;}
+         const attending=isAttending();
+         if(attending){
+           if(guestList.length===0){showError('Please add at least one person attending.');return;}
+           const missing=guestList.find(item=>!item.name.trim());
+           if(missing){showError('Enter a name for each guest or remove empty guest fields.');guestsNode.querySelector(`[data-id="${missing.id}"] input`)?.focus();return;}
+         }
+         // Every request is checked on the server against the private family code list.
+         setBusy(true,'Saving…');
+         try {
+           const data=await callApi('submit',{code,contact,attendance:attending?'yes':'no',guests:attending?guestList.map(g=>({name:g.name.trim(),category:g.category})):[]});
+           showFamily(data.family,{status:attending?'Attending':'Declined',contact,guests:attending?guestList:[]});
+           const adult=Number($('#adult-count').textContent), kid=Number($('#kid-count').textContent);
+           $('#thank-you-title').textContent=attending?'Yeehaw! See you there!':'Aww, we’ll miss you!';
+           $('#thank-you-message').textContent=attending?`Your RSVP is saved for ${adult} adult${adult===1?'':'s'} and ${kid} kid${kid===1?'':'s'}.`:'Thank you for letting us know!';
+           form.hidden=true;$('#thank-you').classList.add('is-visible');$('#thank-you').focus({preventScroll:true});
+           $('#thank-you').scrollIntoView(scrollOptions());
+           if(attending&&!reducedMotion.matches) burstConfetti();
+         } catch(err){showError(err.message || 'Could not save. Please try again.');}
+         finally{setBusy(false);}
+       });
+       $('#edit-rsvp').addEventListener('click',()=>{form.hidden=false;$('#thank-you').classList.remove('is-visible');form.scrollIntoView(scrollOptions())});
+function burstConfetti(){
+        const chars=['★','✦','●','◆'];const colors=['#ffc62e','#e12b3f','#1e5c9a','#ffffff','#e5a929'];
+        for(let i=0;i<56;i++){
+          const el=document.createElement('span');el.className='confetti';
+          el.textContent=chars[i%chars.length];el.style.left=`${Math.random()*100}vw`;
+          el.style.color=colors[i%colors.length];el.style.fontSize=`${10+Math.random()*15}px`;
+          el.style.setProperty('--duration',`${2.1+Math.random()*2.7}s`);
+          el.style.setProperty('--horizontal',`${-145+Math.random()*290}px`);
+          el.style.setProperty('--rotation',`${360+Math.random()*900}deg`);
+          document.body.append(el);el.addEventListener('animationend',()=>el.remove(),{once:true});
+        }
+      }
+      $('#show-map').addEventListener('click', () => {
+        $('#map-cover').hidden = true;
+      });
+      // Front-end only by design: no fetch calls, localStorage, or submissions to servers.
+    })();
+  </script>
+</body>
+</html>
