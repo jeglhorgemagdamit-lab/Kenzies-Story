@@ -476,7 +476,7 @@
        let nextId = 1;
        let verifiedCode = '';
        let isBusy = false;
-       const API = '/.netlify/functions/rsvp';
+       const API = '/api/rsvp';
        async function callApi(action, data) {
          const response = await fetch(API, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({action, ...data})});
          let payload;
